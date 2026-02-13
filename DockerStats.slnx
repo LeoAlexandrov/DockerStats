@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="build.builder.sh" />
+    <File Path="build.dockerstats.sh" />
+    <File Path="Dockerfile.net10.aot.builder" />
+  </Folder>
+  <Project Path="Common/Common.shproj" />
+  <Project Path="DockerStats/DockerStats.csproj" />
+  <Project Path="Play/Play.csproj" />
+</Solution>

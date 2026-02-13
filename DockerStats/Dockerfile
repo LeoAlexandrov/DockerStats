@@ -1,0 +1,6 @@
+﻿FROM gcr.io/distroless/base-debian12
+COPY publish/ /
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+ENTRYPOINT ["./DockerStats"]
+EXPOSE 5000
