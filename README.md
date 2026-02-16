@@ -9,7 +9,7 @@ A simple Prometheus exporter for Docker container statistics. This is a personal
 
 ## Metrics
 
-The app listens port 5000 and exposes '/metrics' endpoint that currently [returns memory used by containers](//DockerStats/Program.cs#L61).  
+The app listens port 5000 and exposes '/metrics' endpoint that currently [returns memory used by containers](/DockerStats/Program.cs#L61).  
 The endpoint is [optionally auth protected with API key](/DockerStats/appsettings.json#L10). No protection if `Auth` section is omitted or `ApiKey` is null or empty. The corresponding Prometheus config is:  
 ```
   - job_name: 'docker'
@@ -35,8 +35,19 @@ Run once this command:
 ```
 docker build -t dotnet-net10-aot-builder -f Dockerfile.net10.aot.builder .
 ```
-It creates an image for the container that will build AOT executable binary. Finally, run this command from the _solution_ folder (copy it first to Linux machine from Windows PC):  
+It creates an image for the container that will build AOT executable binary. Finally, run this command _from the solution folder_ (copy it first to Linux machine from Windows PC):  
 ```
 docker run --rm -v $(pwd):/src -w /src/DockerStats dotnet-net10-aot-builder dotnet publish -c Release -r linux-x64 -p:PublishAot=true -o ./publish
 ```
-Now `DockerStats/publish` folder contains AOT built binary `DockerStats`. Use [this Dockerfile](/DockerStats/Dockerfile) to deploy DockerStats app as a container.
+Now `DockerStats/publish` folder contains AOT built binary `DockerStats`.  
+
+## Deploy on Docker
+
+Use [this Dockerfile](/DockerStats/Dockerfile) to build DockerStats app image
+```
+docker build --tag dockerstats .
+```
+and deploy the container
+```
+docker run -p 5000:5000 --name DockerStats -h DockerStats --restart=always -v /var/run/docker.sock:/var/run/docker.sock -d dockerstats:latest
+```
