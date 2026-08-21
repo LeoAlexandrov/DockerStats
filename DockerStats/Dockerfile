@@ -1,4 +1,4 @@
-﻿FROM gcr.io/distroless/base-debian12
+﻿FROM gcr.io/distroless/base-debian13
 COPY publish/ /
 ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1

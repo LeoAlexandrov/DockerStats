@@ -1,19 +1,25 @@
 using System;
 using System.Text;
 using System.Text.Json.Serialization;
-using AleProjects.Docker.Stats;
-using DockerStats;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+using AleProjects.Docker.Stats;
+using DockerStats;
 
 
 
 var builder = WebApplication.CreateSlimBuilder(args);
 var services = builder.Services;
 var config = builder.Configuration;
+
+builder.Logging
+	.AddSimpleConsole(options => options.TimestampFormat = "yyyy-MM-dd HH:mm:ss.fff ");
 
 
 // configure services

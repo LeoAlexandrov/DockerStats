@@ -33,9 +33,9 @@ namespace DockerStats
 		public Task StartAsync(CancellationToken startToken)
 		{
 			_cts = CancellationTokenSource.CreateLinkedTokenSource(startToken, _lifetime.ApplicationStopping);
-			_pollTask = Task.Run(() => RunPollingAsync(_cts.Token), CancellationToken.None); 
+			_pollTask = Task.Run(() => RunPollingAsync(_cts.Token), CancellationToken.None);
 
-			return Task.CompletedTask;		
+			return Task.CompletedTask;
 		}
 
 		public async Task StopAsync(CancellationToken stopToken)
