@@ -16,8 +16,9 @@ The endpoint is [optionally auth protected with API key](/DockerStats/appsetting
     scheme: https
          # metrics_path defaults to '/metrics'
 
-    headers:
-      APIKey: "1234"
+    http_headers:
+      APIKey:
+        values: ['1234']
 
     static_configs:
       - targets: ['your-monitored-docker-host.com']
